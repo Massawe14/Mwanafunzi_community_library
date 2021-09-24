@@ -17,111 +17,111 @@ class SignIn extends StatefulWidget {
 
 class _SignInState extends State<SignIn> {
 
-  For CircularProgressIndicator.
-  bool visible = false;
+  // For CircularProgressIndicator.
+  // bool visible = false;
 
-  Getting value from TextField widget.
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+  // Getting value from TextField widget.
+  // final emailController = TextEditingController();
+  // final passwordController = TextEditingController();
 
-  Future userLogin() async{
+  // Future userLogin() async{
 
-    // Showing CircularProgressIndicator.
-    setState(() {
-      visible = true;
-    });
-
-    // Getting value from Controller
-    String email = emailController.text;
-    String password = passwordController.text;
-
-    // SERVER LOGIN API URL
-    var url = 'http://10.0.2.2/McLDB/login.php';
-
-    // Store all data with Param Name.
-    var data = {'email': email, 'password' : password};
-
-    // Starting Web API Call.
-    var response = await http.post(url, body: json.encode(data));
-
-    // Getting Server response into variable.
-    var message = jsonDecode(response.body);
-
-    // If the Response Message is Matched.
-    if(message == 'Login Matched'){
-
-      // Hiding the CircularProgressIndicator.
-      setState(() {
-        visible = false;
-      });
-
-      // Navigate to Profile Screen & Sending Email to Next Screen.
-      Navigator.push(context, MaterialPageRoute(builder: (context) => MainScreen()));
-
-    }else{
-
-      // If Email or Password did not Matched.
-      // Hiding the CircularProgressIndicator.
-      setState(() {
-        visible = false;
-      });
-
-      // Showing Alert Dialog with Response JSON Message.
-      showDialog(
-        context: context,
-        builder: (BuildContext context){
-          return AlertDialog(
-            title: new Text(message),
-            actions: <Widget>[
-              TextButton(
-                child: new Text('OK'),
-                onPressed: (){
-                  Navigator.of(context).pop();
-                }
-              )
-            ],
-          );
-        }
-      );
-
-    }
-
-  }
-
-  // TextEditingController email = new TextEditingController();
-  // TextEditingController password = new TextEditingController();
-
-  // String msg ='';
-
-  // Future<List> _login() async {
-  //   final response = await http.post("http://10.0.2.2/McLDB/signin.php", body: {
-  //     "email": email.text,
-  //     "password": password.text,
+  //   // Showing CircularProgressIndicator.
+  //   setState(() {
+  //     visible = true;
   //   });
 
-  //   var datauser = json.decode(response.body);
+  //   // Getting value from Controller
+  //   String email = emailController.text;
+  //   String password = passwordController.text;
 
-  //   if(datauser.length==0){
+  //   // SERVER LOGIN API URL
+  //   var url = 'http://10.0.2.2/McLDB/login.php';
+
+  //   // Store all data with Param Name.
+  //   var data = {'email': email, 'password' : password};
+
+  //   // Starting Web API Call.
+  //   var response = await http.post(url, body: json.encode(data));
+
+  //   // Getting Server response into variable.
+  //   var message = jsonDecode(response.body);
+
+  //   // If the Response Message is Matched.
+  //   if(message == 'Login Matched'){
+
+  //     // Hiding the CircularProgressIndicator.
   //     setState(() {
-  //       msg ="Login Fail";
+  //       visible = false;
   //     });
+
+  //     // Navigate to Profile Screen & Sending Email to Next Screen.
+  //     Navigator.push(context, MaterialPageRoute(builder: (context) => MainScreen()));
+
   //   }else{
-  //     // if(datauser[0]['level']=='admin'){
-  //     //   Navigator.pushReplacementNamed(context, '/AdminPage');
-  //     // }else if(datauser[0]['level']=='member'){
-  //     //   Navigator.pushReplacementNamed(context, '/MemberPage');
-  //     // }
 
-  //     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MainScreen()));
-
+  //     // If Email or Password did not Matched.
+  //     // Hiding the CircularProgressIndicator.
   //     setState(() {
-  //       email = datauser[0]['email'];
+  //       visible = false;
   //     });
+
+  //     // Showing Alert Dialog with Response JSON Message.
+  //     showDialog(
+  //       context: context,
+  //       builder: (BuildContext context){
+  //         return AlertDialog(
+  //           title: new Text(message),
+  //           actions: <Widget>[
+  //             TextButton(
+  //               child: new Text('OK'),
+  //               onPressed: (){
+  //                 Navigator.of(context).pop();
+  //               }
+  //             )
+  //           ],
+  //         );
+  //       }
+  //     );
 
   //   }
 
-  //   return datauser;
   // }
+
+  TextEditingController email = new TextEditingController();
+  TextEditingController password = new TextEditingController();
+
+  String msg ='';
+
+  Future<List> _login() async {
+    final response = await http.post("http://10.0.2.2/McLDB/signin.php", body: {
+      "email": email.text,
+      "password": password.text,
+    });
+
+    var datauser = json.decode(response.body);
+
+    if(datauser.length==0){
+      setState(() {
+        msg ="Login Fail";
+      });
+    }else{
+      // if(datauser[0]['level']=='admin'){
+      //   Navigator.pushReplacementNamed(context, '/AdminPage');
+      // }else if(datauser[0]['level']=='member'){
+      //   Navigator.pushReplacementNamed(context, '/MemberPage');
+      // }
+
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MainScreen()));
+
+      setState(() {
+        email = datauser[0]['email'];
+      });
+
+    }
+
+    return datauser;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -176,7 +176,7 @@ class _SignInState extends State<SignIn> {
                 children: <Widget>[
                   TextFormField(
                     autocorrect: true,
-                    controller: emailController,
+                    controller: email,
                     decoration: InputDecoration(
                       labelText: 'EMAIL',
                       labelStyle: TextStyle(
@@ -192,7 +192,7 @@ class _SignInState extends State<SignIn> {
                   SizedBox(height: 10.0),
                   TextFormField(
                     autocorrect: true,
-                    controller: emailController,
+                    controller: password,
                     decoration: InputDecoration(
                         labelText: 'PASSWORD',
                         labelStyle: TextStyle(
@@ -226,7 +226,7 @@ class _SignInState extends State<SignIn> {
                   SizedBox(height: 30.0),
                   GFButton(
                     onPressed: (){
-                      userLogin();
+                      _login();
                       // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MainScreen()));
                     },
                     text: "LOGIN",
