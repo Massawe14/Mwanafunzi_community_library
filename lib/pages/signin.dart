@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:getwidget/getwidget.dart';
@@ -94,7 +93,7 @@ class _SignInState extends State<SignIn> {
   String msg ='';
 
   Future<List> _login() async {
-    final response = await http.post("http://10.0.2.2/McLDB/signin.php", body: {
+    final response = await http.post("https://10.0.2.2/McLDB/signin.php", body: {
       "email": email.text,
       "password": password.text,
     });

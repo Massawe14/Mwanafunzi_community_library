@@ -40,7 +40,7 @@ class _MainScreenState extends State<MainScreen> {
     var bottomNavigationBarItem = BottomNavigationBarItem(
                     icon: Icon(Icons.home),
                   // ignore: deprecated_member_use
-                  title: Text("Home")
+                  label: "Home"
                 );
         return Scaffold(
           bottomNavigationBar: BottomNavigationBar(
@@ -57,17 +57,17 @@ class _MainScreenState extends State<MainScreen> {
             BottomNavigationBarItem(
                 icon: Icon(Icons.library_books),
               // ignore: deprecated_member_use
-              title: Text("Books")
+              label: "Books"
             ),
             BottomNavigationBarItem(
                 icon: Icon(Icons.video_library),
                 // ignore: deprecated_member_use
-                title: Text("Videos")
+                label: "Videos"
             ),
             BottomNavigationBarItem(
                 icon: Icon(Icons.person),
                 // ignore: deprecated_member_use
-                title: Text("Profile")
+                label: "Profile"
             ),
           ],
       ),
